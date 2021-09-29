@@ -1,0 +1,129 @@
+<div class="container pt-4">
+    <h2>Add User Details</h2>
+    <hr>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-3">
+                <input type="text" class="form-control" name="name" placeholder="Enter First Name"
+                    formControlName="firstName">
+                <div
+                    *ngIf="(employeeFormControl.firstName.dirty || employeeFormControl.firstName.touched) && employeeFormControl.firstName.invalid">
+                    <div *ngIf="employeeFormControl.firstName.errors?.required" class="text-danger">
+                        Please provide first name.
+                    </div>
+                    <div *ngIf="(employeeFormControl.firstName.errors?.minlength || employeeFormControl.firstName.errors?.maxlength)"
+                        class="text-danger">
+                        First name must be between 2-15 alphabets.
+                    </div>
+                    <div *ngIf="employeeFormControl.firstName.errors?.pattern" class="text-danger">
+                        First name shall consist only alphabets.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-3">
+                <input type="text" class="form-control" name="name" placeholder="Enter Last Name"
+                    formControlName="lastName">
+                    <div
+                    *ngIf="(employeeFormControl.lastName.dirty || employeeFormControl.lastName.touched) && employeeFormControl.lastName.invalid">
+                    <div *ngIf="employeeFormControl.lastName.errors?.required" class="text-danger">
+                        Please provide last name.
+                    </div>
+                    <div *ngIf="(employeeFormControl.lastName.errors?.minlength || employeeFormControl.lastName.errors?.maxlength)"
+                        class="text-danger">
+                        Last name must be between 2-15 alphabets.
+                    </div>
+                    <div *ngIf="employeeFormControl.lastName.errors?.pattern" class="text-danger">
+                        Last name shall consist only alphabets.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Designation</label>
+            <div class="col-3">
+                <select class="form-select" formControlName="designation">
+                    <option hidden>Select Designation</option>
+                    <option *ngFor="let d of designations">{{ d }}</option>
+                </select>
+                <div *ngIf="employeeForm.controls.designation.invalid && employeeForm.controls.designation.touched"
+                    class="alert alert-danger p-2">
+                    <div *ngIf="employeeForm.controls.designation.errors?.required">
+                        Designation is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email</label>
+            <div class="col-3">
+                <input type="email" class="form-control" placeholder="Enter Email" formControlName="email">
+                <div *ngIf="employeeForm.controls.email.invalid && employeeForm.controls.email.touched"
+                    class="alert alert-danger p-2 p-2">
+                    <div *ngIf="employeeForm.controls.email.errors?.required;else invalidBlock ">
+                        Email is required.
+                    </div>
+                    <ng-template #invalidBlock>
+                        Enter correct Email Address
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Date of Birth</label>
+            <div class="col-3">
+                <input type="date" class="form-control" formControlName="dob">
+                <div *ngIf="employeeForm.controls.dob.invalid && employeeForm.controls.dob.touched"
+                    class="alert alert-danger p-2">
+                    <div *ngIf="employeeForm.controls.dob.errors?.required">
+                        Date of Birth is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Address</label>
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Enter Address" formControlName="address">
+                <div *ngIf="employeeForm.controls.address.invalid && employeeForm.controls.address.touched"
+                    class="alert alert-danger p-2">
+                    <div *ngIf="employeeForm.controls.address.errors?.required">
+                        Address is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Department</label>
+            <div class="col-3">
+                <select class="form-select" formControlName="department">
+                    <option hidden>Select Department</option>
+                    <option *ngFor="let d of departments">{{ d }}</option>
+                </select>
+                <div *ngIf="employeeForm.controls.department.invalid && employeeForm.controls.department.touched"
+                    class="alert alert-danger p-2">
+                    <div *ngIf="employeeForm.controls.department.errors?.required">
+                        Department is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <button #submitBtn type="submit" [disabled]="employeeForm.invalid" class="btn btn-success col-2">{{
+                isEditable ? 'Edit Employee' : 'Add Employee' }}</button>
+            <button type="button" class="btn btn-danger col-2 mx-5" (click)="clearForm()">Clear Form</button>
+        </div>
+    </form>
+</div>

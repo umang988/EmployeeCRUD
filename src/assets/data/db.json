@@ -1,0 +1,24 @@
+{
+  "employee": [
+    {
+      "firstName": "Umang",
+      "lastName": "Tandel",
+      "designation": "Software Architect",
+      "email": "umang@gmail.com",
+      "dob": "1999-11-24",
+      "address": "valsad",
+      "department": "Sales and marketing",
+      "id": 2
+    },
+    {
+      "firstName": "Sweta",
+      "lastName": "Patel",
+      "designation": "Product Manager",
+      "email": "sweta@gmail.com",
+      "dob": "2021-09-22",
+      "address": "asdads",
+      "department": "DevOps",
+      "id": 3
+    }
+  ]
+}

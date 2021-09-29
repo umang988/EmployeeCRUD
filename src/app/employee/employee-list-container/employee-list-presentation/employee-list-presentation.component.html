@@ -1,0 +1,31 @@
+<div class="container">
+    <h3>Employee List</h3>
+<br>
+<a class="btn btn-primary" routerLink='../employeeAdd'>Add Employee</a>
+<br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Email</th>
+          <th scope="col">Address</th>
+          <th scope="col">Department</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeeList">
+          <td> {{ employee.firstName }} {{ employee.lastName }} </td>
+          <td> {{ employee.designation }} </td>
+          <td> {{ employee.email }}</td>
+          <td> {{ employee.address }} </td>
+          <td> {{ employee.department }} </td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="['../employeeEdit',employee.id]">Edit</button>
+            <button class="btn btn-secondary mx-2" (click)="deleteEmployee(employee.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
